@@ -1,0 +1,25 @@
+{
+  "name": "q-it-up",
+  "version": "0.1.0",
+  "description": "Takes conventional CPS-style functions and wraps the result in a promise using the Q library.",
+  "main": "lib/q-it-up.js",
+  "scripts": {
+    "test": "grunt test"
+  },
+  "keywords": [
+    "promise",
+    "q",
+    "async",
+    "callback"
+  ],
+  "author": "Jim Kinsey",
+  "license": "ISC",
+  "dependencies": {
+    "q": "^1.0.1"
+  },
+  "devDependencies": {
+    "grunt": "^0.4.5",
+    "grunt-contrib-coffee": "^0.12.0",
+    "grunt-jasmine-node": "^0.2.1"
+  }
+}
