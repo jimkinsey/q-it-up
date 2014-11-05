@@ -21,6 +21,7 @@ module.exports = (grunt) ->
 
   grunt.loadNpmTasks 'grunt-jasmine-node'
   grunt.loadNpmTasks 'grunt-contrib-coffee'
+  grunt.loadNpmTasks 'grunt-release'
       
   grunt.registerTask 'test', [ 'jasmine_node' ]
   grunt.registerTask 'build', [ 'test', 'coffee' ]
