@@ -1,6 +1,6 @@
 {
   "name": "q-it-up",
-  "version": "0.1.1",
+  "version": "0.1.0",
   "description": "Takes conventional CPS-style functions and wraps the result in a promise using the Q library.",
   "main": "lib/q-it-up.js",
   "scripts": {
@@ -25,8 +25,8 @@
     }
   ],
   "license": "GPL",
-  "engines": {
-    "node": "*"
+  "engines" : { 
+    "node" : "*" 
   },
   "bugs": "https://github.com/jimkinsey/q-it-up/issues",
   "dependencies": {
