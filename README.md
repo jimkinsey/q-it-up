@@ -20,7 +20,7 @@ Installation
 Usage
 -----
 
-Q-it-up provides a function which takes a CPS (continuation passing style) function and fills in the callback with one which resolves (or rejects) using a Q promise.
+Q-it-up provides a function which takes a CPS (continuation passing style) function and fills in the callback with one which resolves (or rejects) using a Q  promise.
 
 That is, any function which works by taking a callback with a signature where an error is passed as the first argument and results passed as the remaining arguments:
 
@@ -38,7 +38,7 @@ This can be "Q'd up" to instead return a promise:
       return callback(null, a * b); 
     });
     
-    mult(7,6).then(console.log);
+    mult(7,6).then(console.log); // 42
     
 If an error is passed to the callback, this will be rejected with Q:
 
@@ -46,7 +46,17 @@ If an error is passed to the callback, this will be rejected with Q:
       return callback(message);
     });
     
-    fail("An error occurred!").then(null, console.warn);
+    fail("An error occurred!").then(null, console.warn); // An error occurred!
+
+if multiple values are passed to the callback on success these will be resolved as an array:
+
+    split = qItUp(function(str, separator, callback)) {
+      return callback.apply(this, [ null ].concat(str.split(separator)));
+      });
+    
+    split('1:2:3', ':').then(function(results) {
+       return console.log(results);
+    }); // [ 1, 2, 3 ]
 
 TODO
 ----

@@ -30,3 +30,12 @@ describe 'Q it up', ->
     .fail (error) ->
       expect(error).toBe 0
     .fin done
+    
+  it 'resolves all arguments after the error on success', (done) ->
+    returnMany = qItUp (callback) -> callback null, 1, 2, 3
+    returnMany()
+    .then (res) ->
+      expect(res).toEqual [1, 2, 3]
+    .fail (error) ->
+      expect(error).not.toBeDefined()
+    .fin done 
