@@ -7,7 +7,7 @@ describe 'Q it up', ->
     qdCpsMult = qItUp(cpsMult)
     qdCpsMult(10, 10)
     .fail (err) ->
-      expect(err).not.toBeDefined
+      expect(err).not.toBeDefined()
     .then (res) -> 
       expect(res).toBe 100
     .fin done
@@ -17,7 +17,16 @@ describe 'Q it up', ->
     qdCpsDiv = qItUp(cpsDiv)
     qdCpsDiv(1, 0)
     .then (res) -> 
-      expect(res).not.toBeDefined
+      expect(res).not.toBeDefined()
     .fail (error) ->
       expect(error).toBe 'Division by zero!'
+    .fin done
+
+  it 'only rejects errors when the error is null or undefined, not based on truthiness', (done) ->
+    returnZero = qItUp (callback) -> callback 0, 'Success'
+    returnZero()
+    .then (res) ->
+      expect(res).not.toBeDefined()
+    .fail (error) ->
+      expect(error).toBe 0
     .fin done
