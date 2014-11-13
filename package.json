@@ -1,6 +1,6 @@
 {
   "name": "q-it-up",
-  "version": "0.1.5",
+  "version": "0.1.6",
   "description": "Takes conventional CPS-style functions and wraps the result in a promise using the Q library.",
   "main": "lib/q-it-up.js",
   "scripts": {
