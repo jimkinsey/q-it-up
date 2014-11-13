@@ -39,3 +39,16 @@ describe 'Q it up', ->
     .fail (error) ->
       expect(error).not.toBeDefined()
     .fin done 
+    
+  it 'can be invoked on a named function of an object such that it executes in the correct scope', (done) ->
+    class Thing
+      constructor: (@n) ->    
+      outer: (callback) -> 
+        callback null, @n
+    outer = qItUp new Thing(42), 'outer'
+    outer()
+    .then (res) ->
+      expect(res).toEqual 42
+    .fail (error) ->
+      expect(error).not.toBeDefined()
+    .fin done

@@ -3,9 +3,10 @@ q = require 'q'
 arrayFrom = (argumentsObject) ->
   arg for arg in argumentsObject
 
-module.exports = (fn) -> ->
+module.exports = (target, method) -> ->
   deferred = q.defer()
-  fn.apply this, arrayFrom(arguments).concat [
+  [scope, fn] = if method? then [target, target[method]] else [this, target]
+  fn.apply scope, arrayFrom(arguments).concat [
     (err, res) -> 
       if err?
         deferred.reject err

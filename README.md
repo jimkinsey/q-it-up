@@ -48,7 +48,7 @@ If an error is passed to the callback, this will be rejected with Q:
     
     fail("An error occurred!").then(null, console.warn); // An error occurred!
 
-if multiple values are passed to the callback on success these will be resolved as an array:
+If multiple values are passed to the callback on success these will be resolved as an array:
 
     split = qItUp(function(str, separator, callback)) {
       return callback.apply(this, [ null ].concat(str.split(separator)));
@@ -57,6 +57,14 @@ if multiple values are passed to the callback on success these will be resolved 
     split('1:2:3', ':').then(function(results) {
        return console.log(results);
     }); // [ 1, 2, 3 ]
+    
+A method on an object may be q'd up by specifying the object and the name of the method:
+
+    client = new ApiClient();
+    
+    get = qItUp(client, 'get');
+  
+This ensures that the method is executed in the correct scope (that of the owning object).
 
 TODO
 ----
