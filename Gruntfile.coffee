@@ -25,4 +25,5 @@ module.exports = (grunt) ->
       
   grunt.registerTask 'test', [ 'jasmine_node' ]
   grunt.registerTask 'build', [ 'test', 'coffee' ]
+  grunt.registerTask 'publish', [ 'build', 'release']
   grunt.registerTask 'default', [ 'build' ]
