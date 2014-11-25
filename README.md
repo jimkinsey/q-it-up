@@ -52,7 +52,7 @@ If multiple values are passed to the callback on success these will be resolved 
 
     split = qItUp(function(str, separator, callback)) {
       return callback.apply(this, [ null ].concat(str.split(separator)));
-      });
+    });
     
     split('1:2:3', ':').then(function(results) {
        return console.log(results);
@@ -64,7 +64,11 @@ A method on an object may be q'd up by specifying the object and the name of the
     
     get = qItUp(client, 'get');
   
-This ensures that the method is executed in the correct scope (that of the owning object).
+This ensures that the method is executed in the correct scope (that of the owning object). A proxy object with q'd up functions can be created like so:
+
+    client = qItUp(new ApiClient(), [ 'get', 'post', 'delete' ]);
+
+Only the named functions will be q'd up and available on the proxy. If other methods on the original need to be accessed, then a reference it will need to be maintained.
 
 TODO
 ----
