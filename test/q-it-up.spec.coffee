@@ -52,3 +52,18 @@ describe 'Q it up', ->
     .fail (error) ->
       expect(error).not.toBeDefined()
     .fin done
+    
+  it 'can be used to produce a new object with functions from a given one', (done) ->
+    math =
+      add: (a, b, callback) -> callback null, a + b
+      multiply: (a, b, callback) -> callback null, a * b
+    qMath = qItUp math, [ 'add', 'multiply' ]
+    qMath.add(2, 2) 
+    .then (res) -> 
+      expect(res).toBe 4
+    .then ->
+      qMath.multiply(6, 7)
+    .then (res) -> 
+      expect(res).toBe 42
+    .fin done
+    
